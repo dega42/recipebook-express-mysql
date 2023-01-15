@@ -1,0 +1,19 @@
+<div class="container">
+    <% recipes.forEach(recipe => { %>
+    <div class="card mt-4">
+        <div class="card-body">
+            <h4 class="card-title"><%= recipe.title %></h4>
+            <div class="card-subtitle text-muted mb-2">
+                <%= recipe.description %>
+            </div>
+            <div class="card-text mb-2"><%= recipe.ingredients %></div>
+            <div class="card-text mb-2"><%= recipe.directions %></div>
+            <a href="recipe/<%= recipe.slug %>" class="btn btn-primary">Read More</a>
+            <a href="recipe/edit/<%= recipe.slug %>" class="btn btn-info">Edit</a>
+            <form action="/recipe/<%= recipe.id %>?_method=DELETE" method="POST" class="d-inline">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+    <% }) %>
+</div>

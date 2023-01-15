@@ -1,0 +1,32 @@
+    [
+    {
+        "name": "home",
+        "title": "Home",
+        "description": "description",
+        "keywords": "keywords"
+    },
+    {
+        "name": "new-recipe",
+        "title": "New recipe",
+        "description": "description",
+        "keywords": "keywords"
+    },
+    {
+        "name": "edit-recipe",
+        "title": "Edit recipe",
+        "description": "description",
+        "keywords": "keywords"
+    },
+    {
+        "name": "recipes",
+        "title": "Recipes",
+        "description": "description",
+        "keywords": "keywords"
+    },
+    {
+        "name": "recipe",
+        "title": "Recipe",
+        "description": "description",
+        "keywords": "keywords"
+    }
+]
