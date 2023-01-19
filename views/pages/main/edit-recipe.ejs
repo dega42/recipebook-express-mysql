@@ -1,5 +1,5 @@
 <div class="container">
-    <form method="post" action="/recipe/<%= recipe.id %>?_method=PUT">
+    <form method="post" action="/recipe/<%= recipe.id %>?_method=PUT" enctype="multipart/form-data">
         <%- include ('./_recipe_form') %>
     </form>
 </div>

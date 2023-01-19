@@ -63,7 +63,8 @@ exports.findBySlug = (req, res) => {
 exports.edit = (req, res) => {
 	const recipe = new Recipe({
 		title: req.body.title,
-		slug: slugify(req.body.title, { lower: true }),
+		// slug: slugify(req.body.title, { lower: true }),
+		slug: req.body.title,
 		image: 'image.jpg',
 		description: req.body.description,
 		ingredients: req.body.ingredients,
@@ -82,6 +83,7 @@ exports.edit = (req, res) => {
 }
 
 exports.new = (req, res) => {
+	
 	const recipe = new Recipe({
 		title: req.body.title,
 		slug: slugify(req.body.title, { lower: true }),
@@ -90,6 +92,9 @@ exports.new = (req, res) => {
 		ingredients: req.body.ingredients,
 		directions: req.body.directions
 	});
+	// console.log(recipe);
+	// console.log(req.files);
+	// res.redirect('/recipe/new')
 	Recipe.create(recipe, function (err, recipe) {
 		if (err)
 			res.status(500).send({

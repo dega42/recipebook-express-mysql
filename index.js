@@ -2,6 +2,9 @@ const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const methodOverride = require('method-override');
 const path = require('path');
+const multer  = require('multer')
+
+const upload = multer({ dest: 'uploads/' })
 
 // head meta data load
 const metas = require('./metas.json');

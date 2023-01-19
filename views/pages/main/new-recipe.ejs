@@ -1,5 +1,7 @@
 <div class="container">
-    <form method="post" action="/recipe">
+    <!-- <form method="post" action="/recipe" enctype="application/x-www-form-urlencoded"> -->
+    <form method="post" action="/recipe" enctype="multipart/form-data">
+    
         <%- include ('./_recipe_form') %>
     </form>
 </div>
