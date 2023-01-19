@@ -92,9 +92,10 @@ exports.new = (req, res) => {
 		ingredients: req.body.ingredients,
 		directions: req.body.directions
 	});
-	// console.log(recipe);
-	// console.log(req.files);
-	// res.redirect('/recipe/new')
+	//console.log(slugify('Ez egy példaszöveg', { lower: true })); 
+	//console.log(req.body.title); 
+	
+	
 	Recipe.create(recipe, function (err, recipe) {
 		if (err)
 			res.status(500).send({
