@@ -1,5 +1,5 @@
 <div class="container">
-    <% recipes.forEach(recipe => { %>
+    <% recipes.map((recipe, index) => { %>
     <div class="card mt-4 shadow">
         <div class="card-body">
             <h4 class="card-title"><%= recipe.title %></h4>
