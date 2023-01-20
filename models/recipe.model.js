@@ -6,7 +6,6 @@ class Recipe {
 		this.title = recipe.title;
 		//this.slug = slugify(recipe.title);
 		this.slug = recipe.title;
-		//this.slug = recipe.title;
 		this.image = recipe.image;
 		this.description = recipe.description;
 		this.ingredients = recipe.ingredients;
@@ -62,13 +61,16 @@ class Recipe {
 	}
 	static create(recipe, result) {
 		let query = 'INSERT INTO recipes SET ?';
+		if (recipe.title == '') {			
+			result('Title is required!', null);
+			return;
+		}
 		connect.query(query, recipe, (err, res) => {
 			if (err) {
 				console.log("error: ", err);
 				result(err, null);
 				return;
 			}
-
 			console.log("created recipe: ", { id: res.insertId, ...recipe });
 			result(null, { id: res.insertId, ...recipe });
 		});

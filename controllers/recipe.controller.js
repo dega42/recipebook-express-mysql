@@ -13,11 +13,13 @@ exports.getNew = (req, res) => {
 		ingredients: req.body.ingredients,
 		directions: req.body.directions
 	});
-	res.render('pages/main/new-recipe', { meta, recipe });
+	const err = [];
+	res.render('pages/main/new-recipe', { meta, recipe, err });
 };
 
 exports.getEdit = (req, res) => {
 	const meta = metas.find(e => e.name == 'edit-recipe');
+	const err = [];
 	Recipe.getBySlug(req.params.slug, function (err, recipe) {
 		if (err)
 			res.status(500).send({
@@ -70,7 +72,7 @@ exports.edit = (req, res) => {
 		ingredients: req.body.ingredients,
 		directions: req.body.directions
 	});
-	Recipe.update(req.params.id, recipe, function(err, recipe) {
+	Recipe.update(req.params.id, recipe, function (err, recipe) {
 		if (err)
 			res.status(500).send({
 				message:
@@ -83,7 +85,6 @@ exports.edit = (req, res) => {
 }
 
 exports.new = (req, res) => {
-	
 	const recipe = new Recipe({
 		title: req.body.title,
 		slug: slugify(req.body.title, { lower: true }),
@@ -94,14 +95,14 @@ exports.new = (req, res) => {
 	});
 	//console.log(slugify('Ez egy példaszöveg', { lower: true })); 
 	//console.log(req.body.title); 
-	
-	
-	Recipe.create(recipe, function (err, recipe) {
-		if (err)
-			res.status(500).send({
-				message:
-					err.message || "Some error occurred while retrieving recipes."
-			});
+
+	Recipe.create(recipe, function (err, recipe = new Recipe({})) {
+		if (err) {
+			const meta = metas.find(e => e.name == 'new-recipe');
+			console.log('RE: ', recipe = new Recipe({}));
+			res.render('pages/main/new-recipe', { recipe, meta, err });
+			return;
+		}
 		else {
 			res.redirect('/recipe')
 		}
