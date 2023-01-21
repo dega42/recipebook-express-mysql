@@ -1,5 +1,11 @@
 <div class="container">
-    <form method="post" action="/recipe/<%= recipe.id %>?_method=PUT" enctype="multipart/form-data">
+    <% if (err) { %>
+        <div class="alert alert-danger" role="alert">
+            <%= err %>
+        </div>
+        <% } %>
+    
+    <form method="post" action="/recipe/<%= recipe.id %>?_method=PUT" enctype="application/x-www-form-urlencoded">
         <%- include ('./_recipe_form') %>
     </form>
 </div>

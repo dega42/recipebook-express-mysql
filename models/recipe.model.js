@@ -16,7 +16,7 @@ class Recipe {
 		connect.query(query, (err, res) => {
 			if (err) {
 				console.log("error: ", err);
-				result(null, err);
+				result(err, null);
 				return;
 			}
 			result(null, res);
@@ -27,7 +27,7 @@ class Recipe {
 		connect.query(query, slug, (err, res) => {
 			if (err) {
 				console.log("error: ", err);
-				result(null, err);
+				result(err, null);
 				return;
 			}
 			result(null, res);
@@ -38,7 +38,7 @@ class Recipe {
 		connect.query(query, id, (err, res) => {
 			if (err) {
 				console.log("error: ", err);
-				result(null, err);
+				result(err, null);
 				return;
 			}
 			console.log(res.length);
@@ -51,7 +51,7 @@ class Recipe {
 
 			if (err) {
 				console.log("error: ", err);
-				result(null, err);
+				result(err, null);
 				return;
 			}
 
@@ -61,7 +61,7 @@ class Recipe {
 	}
 	static create(recipe, result) {
 		let query = 'INSERT INTO recipes SET ?';
-		if (recipe.title == '') {			
+		if (recipe.title == '') {
 			result('Title is required!', null);
 			return;
 		}
@@ -77,6 +77,10 @@ class Recipe {
 	};
 	static update(id, recipe, result) {
 		let query = 'UPDATE recipes SET title = ?, slug = ?, image = ?, description = ?, ingredients = ?, directions = ? WHERE id = ?';
+		if (recipe.title == '') {
+			result('Title is required!', null);
+			return;
+		}
 		let data = Object.values(recipe);
 		data.push(id);
 		connect.query(query, data, (err, res) => {
@@ -85,7 +89,7 @@ class Recipe {
 				result(err, null);
 				return;
 			}
-			console.log("created recipe: ", { id: res.insertId, ...recipe });
+			console.log("updated recipe: ", { id: res.insertId, ...recipe });
 			result(null, { id: res.insertId, ...recipe });
 		});
 	};

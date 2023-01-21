@@ -1,5 +1,10 @@
 <div class="container">
-    <% recipes.map((recipe, index) => { %>
+    <% if (err) { %>
+    <div class="alert alert-danger" role="alert">
+        <%= err %>
+    </div>
+    <% } %>
+    <% if (recipes) recipes.map((recipe, index) => { %>
     <div class="card mt-4 shadow">
         <div class="card-body">
             <h4 class="card-title"><%= recipe.title %></h4>
