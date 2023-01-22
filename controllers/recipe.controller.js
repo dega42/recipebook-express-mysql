@@ -22,14 +22,6 @@ exports.getEdit = (req, res) => {
 	
 	Recipe.getBySlug(req.params.slug, function (err, recipe) {
 		res.render('pages/main/edit-recipe', { meta, recipe: recipe[0], err });
-		// if (err)
-		// 	res.status(500).send({
-		// 		message:
-		// 			err.message || "Some error occurred while retrieving recipe."
-		// 	});
-		// else {
-		// 	res.render('pages/main/edit-recipe', { meta, recipe: recipe[0], err });
-		// }
 	});
 };
 
@@ -45,15 +37,6 @@ exports.findBySlug = (req, res) => {
 	const meta = metas.find(e => e.name == 'recipe');
 	Recipe.getBySlug(req.params.slug, function (err, recipe) {
 		res.render('pages/main/recipe', { meta, recipe: recipe[0], err });
-		// if (err)
-		// 	res.status(500).send({
-		// 		message:
-		// 			err.message || "Some error occurred while retrieving recipes."
-		// 	});
-		// else {
-		// 	meta.title += ` - ${recipe[0].title}`;
-		// 	res.render('pages/main/recipe', { meta, recipe: recipe[0] });
-		// }
 	})
 };
 
@@ -71,6 +54,7 @@ exports.edit = (req, res) => {
 
 	Recipe.update(req.params.id, recipe, function (err, recipe) {
 		if (err) {
+			
 			const meta = metas.find(e => e.name == 'edit-recipe');
 			res.render('pages/main/edit-recipe', { recipe, meta, err });
 			return;
