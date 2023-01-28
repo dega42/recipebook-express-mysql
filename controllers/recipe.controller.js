@@ -19,7 +19,7 @@ exports.getNew = (req, res) => {
 
 exports.getEdit = (req, res) => {
 	const meta = metas.find(e => e.name == 'edit-recipe');
-	
+
 	Recipe.getBySlug(req.params.slug, function (err, recipe) {
 		res.render('pages/main/edit-recipe', { meta, recipe: recipe[0], err });
 	});
@@ -51,16 +51,25 @@ exports.edit = (req, res) => {
 		directions: req.body.directions
 	});
 
-
+	//console.log(recipe);
 	Recipe.update(req.params.id, recipe, function (err, recipe) {
 		if (err) {
-			
+
+			// Recipe.getBySlug(req.body.title, function (err, recipe) {
+			// 	const meta = metas.find(e => e.name == 'edit-recipe');
+			// 	res.render('pages/main/edit-recipe', { meta, recipe: recipe[0], err });
+			// });
+			// console.log(req.body.slug);
+			// console.log(req.params.id);
+			//res.redirect(`/recipe/edit/${req.body.slug}`, { id: req.params.id })
 			const meta = metas.find(e => e.name == 'edit-recipe');
 			res.render('pages/main/edit-recipe', { recipe, meta, err });
 			return;
 		}
 		else {
+
 			res.redirect('/recipe')
+
 		}
 	})
 }

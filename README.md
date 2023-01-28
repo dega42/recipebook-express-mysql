@@ -1,6 +1,6 @@
 # Recipebook
 
-Simple recipebook app with NodeJS (Express) and MySQL.
+Simple recipebook app with NodeJS (Express, EJS view engine) and MySQL.
 
 # TODO
 
